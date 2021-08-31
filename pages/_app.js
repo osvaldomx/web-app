@@ -1,8 +1,10 @@
+import App from 'next/app';
+import React from 'react';
 import Head from 'next/head';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-icons/font/bootstrap-icons.css'
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
-export default function App({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }) {
     return (
         <>
             <Head>
@@ -13,5 +15,13 @@ export default function App({ Component, pageProps }) {
             <Component {...pageProps} />
         </>
     )
-  }
+}
+
+MyApp.getInitialProps = async (ctx) => {
+    const appProps = await App.getInitialProps(ctx);
+  
+    return {
+        ...appProps
+    };
+}
   

@@ -1,11 +1,13 @@
-import React from 'react';
+const next = require('next');
+const express = require('express');
+const routes = require('./routes');
 
-const App = () => {
-	return (
-		<div>
-            <h1>HOLA MUNDO</h1>
-		</div>
-	)
-}
+const app = next({
+	dev: true
+});
+const handler = routes.getRequestHandler(app);
+const port = 4000;
 
-render(<App />, document.getElementById('root'))
+app.prepare().then(() => {
+	express().use(handler).listen(port);
+});

@@ -2,15 +2,13 @@
   "name": "web-app",
   "version": "0.0.1",
   "description": "Web app to create a dashboard for Project Leagues",
-  "author": "osvaldo.trujillo.ingenieria@gmail.com",
-  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/osvaldomx/services-leagues.git"
   },
   "main": "server.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "start": "next start",
     "build": "next build",
     "test": "react-scripts test --env=jsdom",
@@ -18,16 +16,25 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/styles": "^4.11.4",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0-beta3",
     "bootstrap-icons": "^1.5.0",
-    "next": "^11.1.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "express": "^4.17.1",
+    "next": "^10.2.3",
+    "next-cookies": "^2.0.3",
+    "next-routes": "^1.4.2",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
   },
   "devDependencies": {
     "eslint-config-next": "11.1.0",
     "react-scripts": "latest"
+  },
+  "peerDependencies": {
+    "styled-jsx": "^4.0.1"
   },
   "browserslist": {
     "production": [
@@ -40,5 +47,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "author": "<osvaldo.trujillo.ingenieria@gmail.com>",
+  "license": "ISC"
 }

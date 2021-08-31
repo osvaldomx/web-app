@@ -1,6 +1,7 @@
 import axios from 'axios';
+import users from './users';
 
-const api = {}
+const api = {};
 
 const instance = axios.create({
     baseURL: "http://localhost:5000/api/",
@@ -9,5 +10,7 @@ const instance = axios.create({
         "Content-Type": "application/json"
     }
 });
+
+api.users = users(instance);
 
 export default api;

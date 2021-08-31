@@ -1,11 +1,34 @@
 import styles from './login.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
+import api from '/utils/api/api';
+import { useRef } from 'react';
+import Router from 'next/router';
 
 export default function Login() {
+
+    const userEmail = useRef()
+    const userPassword = useRef()
+
+    const sendFormSignin = (ev) => {
+        ev.preventDefault()
+        
+        try{
+            const prom = api.users.signin(
+                userEmail.current.value,
+                userPassword.current.value
+            ).then((response) => {
+                document.cookie = `authtoken=${response.data.data.access_token}; Secure`;
+                Router.push("/profile")
+            });
+        } catch (error){
+            console.log(error)
+        }
+    }
+
     return (
         <main className={styles.formSignin}>
-            <form onSubmit={(ev) => sendFormLogin(ev)}>
+            <form onSubmit={(ev) => sendFormSignin(ev)}>
                 <Image
                     src="/img/logo.png"
                     width={80}
@@ -15,11 +38,21 @@ export default function Login() {
                 />
                 <h1 className="h3 mb-3 fw-normal">Iniciar sesión</h1>
                 <div className="form-floating">
-                    <input type="email" className="form-control" id="Email" placeholder="correo@ejemplo.com" />
+                    <input 
+                        id="Email"
+                        type="email"
+                        className="form-control"
+                        placeholder="correo@ejemplo.com"
+                        ref={userEmail}/>
                     <label htmlFor="Email">Email address</label>
                 </div>
                 <div className="form-floating">
-                    <input type="password" className="form-control" id="Password" placeholder="Contraseña" />
+                    <input
+                        id="Password"
+                        type="password"
+                        className="form-control"
+                        placeholder="Contraseña"
+                        ref={userPassword}/>
                     <label htmlFor="Password">Password</label>
                 </div>
                 <div className={`${styles.checkbox} mb-3`}>
