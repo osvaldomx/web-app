@@ -1,7 +1,7 @@
 import styles from './login.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import api from '/utils/api/api';
+import api from 'utils/api/api';
 import { useRef } from 'react';
 import Router from 'next/router';
 

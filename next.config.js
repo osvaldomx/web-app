@@ -1,17 +1,13 @@
-// next.config.js
+const withPlugins = require("next-compose-plugins");
+const withImages = require("next-images");
+const webpack = require("webpack");
+const path = require("path");
 
-// You can choose which headers to add to the list
-// after learning more below.
-const securityHeaders = []
-
-module.exports = {
-  async headers() {
-    return [
-      {
-        // Apply these headers to all routes in your application.
-        source: '/(.*)',
-        headers: securityHeaders,
-      },
-    ]
-  },
-}
+module.exports = withPlugins([withImages],
+  {
+    webpack(config, options) {
+      config.resolve.modules.push(path.resolve("./"));
+      return config;
+    },
+  }
+);
